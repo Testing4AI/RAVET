@@ -37,17 +37,7 @@ Construction and selection happen before release. Verification needs only the ta
 ### Baseline Comparison
 
 The baseline is [SentinelRAG](https://arxiv.org/abs/2606.05787), the closest sentinel-based ownership method. The public implementation preserves its original carriers, default probes, and randomized order in our matched evaluation.
-
-| Design choice | SentinelRAG in the paired study | RAVET |
-| :--- | :--- | :--- |
-| Fact carrier | Original standalone synthetic document | Relation-explicit carrier with the same identity and fact contract |
-| Query selection | First pre-generated probe | One shadow-selected probe per carrier |
-| Execution order | Random order; three ordering seeds | Deterministic, feedback-guided prioritization |
-| Online question rewriting | None | None; selected questions are frozen |
-| Target access | Answers only | Answers only |
-| Decision layer | Shared oracle, background bound, and stopping rule | Same |
-
-This is a controlled comparison of evidence acquisition, not a claim that the baseline's native decision procedure is reproduced unchanged. [Implementation map](docs/REPRODUCTION.md#implementation-map) links the components to code. General-rewrite, selection/execution, and static-ranking controls separate the mechanisms' contributions; see the [evidence guide](docs/EVIDENCE.md).
+[Implementation map](docs/REPRODUCTION.md#implementation-map) links the components to code. General-rewrite, selection/execution, and static-ranking controls separate the mechanisms' contributions; see the [evidence guide](docs/EVIDENCE.md).
 
 ## Quick Start
 
