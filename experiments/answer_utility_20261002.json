@@ -1,0 +1,44 @@
+{
+  "protocol_version": "answer-utility-20261002-v1",
+  "study_role": "Paired end-to-end benign-answer utility supplement",
+  "seed": 2026100201,
+  "query_count_per_dataset": 100,
+  "clean_document_count": 3000,
+  "sentinel_count": 30,
+  "top_k": 5,
+  "reference_document_limit": 3,
+  "reference_word_limit": 1200,
+  "clean_repeat_count_per_dataset": 10,
+  "target_retrievers": ["bm25", "bge-m3"],
+  "target_models": ["api-deepseek-v4-flash-0731", "api-kimi-k3"],
+  "verifier_model": "api-glm-5.2",
+  "max_response_tokens": 8192,
+  "judge_format_retries": 2,
+  "dense_model": "BAAI/bge-m3",
+  "dense_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "dense_embedding_batch_size": 16,
+  "dense_max_seq_length": 512,
+  "datasets": {
+    "fiqa": {
+      "original": "output/overnight-canaries/watermark_injections/fiqa/k60/20260820_011248_deepseek_stn/injection_result.json",
+      "relation_explicit": "output/v5-sentinel-optimization/candidates/fiqa/relation_explicit/injection_result.json"
+    },
+    "nfcorpus": {
+      "original": "output/overnight-canaries/watermark_injections/nfcorpus/k60/20260820_010129_deepseek_stn/injection_result.json",
+      "relation_explicit": "output/v5-sentinel-optimization/candidates/nfcorpus/relation_explicit/injection_result.json"
+    }
+  },
+  "constraints": [
+    "Sample real test queries before retrieval or model execution; do not condition inclusion on answer quality or sentinel exposure",
+    "Include the selected queries' positive qrel documents in a fixed 3000-document corpus; fill remaining slots by seeded random sampling",
+    "Use the same ordinary documents and the same 30 sentinel identities for both injection methods",
+    "Retain ordinary texts verbatim and keep sentinels as independent documents; no watermark-aware target prompts",
+    "Use the existing answer_with_rag prompt for all target conditions",
+    "Reuse target completions only for exactly identical model settings and prompts; disclose logical outputs versus physical API requests",
+    "Make independent clean-repeat requests in a separate cache namespace to estimate intrinsic answer variation",
+    "Blind method labels and randomize answer order for the semantic and reference-grounded quality judge",
+    "Report answer interference, quality deterioration, paired quality differences, abstention, and retrieval changes separately",
+    "LLM quality ratings are surrogate judgments, not human annotations or gold answer accuracy",
+    "Preserve failed or malformed attempts; never count incomplete model responses as successful utility observations"
+  ]
+}

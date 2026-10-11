@@ -1,0 +1,7 @@
+{
+  "preset_name": "generator",
+  "llm_url": "https://example.invalid/v1",
+  "api_key": "${RAVET_API_KEY}",
+  "model": "YOUR_ACCESSIBLE_MODEL_ID",
+  "llm_arg": {"temperature": 0, "max_tokens": 4096}
+}

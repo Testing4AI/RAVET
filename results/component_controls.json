@@ -1,0 +1,203 @@
+{
+  "static_vs_feedback": {
+    "comparison": "Frozen initial utility versus answer-feedback updates, same selected RAVET suite",
+    "point": {
+      "vsr6": {
+        "baseline": 0.6111111111111112,
+        "candidate": 0.6944444444444444,
+        "difference": 0.08333333333333326
+      },
+      "vsr15": {
+        "baseline": 0.7916666666666666,
+        "candidate": 0.8333333333333334,
+        "difference": 0.04166666666666674
+      },
+      "mq15": {
+        "baseline": 7.055555555555555,
+        "candidate": 6.659722222222222,
+        "difference": -0.39583333333333304
+      },
+      "query_savings": 0.05610236220472442,
+      "conditions": 144
+    },
+    "by_scenario": [
+      {
+        "scenario": "intact",
+        "vsr6": {
+          "baseline": 1.0,
+          "candidate": 1.0,
+          "difference": 0.0
+        },
+        "vsr15": {
+          "baseline": 1.0,
+          "candidate": 1.0,
+          "difference": 0.0
+        },
+        "mq15": {
+          "baseline": 4.027777777777778,
+          "candidate": 4.027777777777778,
+          "difference": 0.0
+        },
+        "query_savings": 0.0,
+        "conditions": 72
+      },
+      {
+        "scenario": "topic_subset",
+        "vsr6": {
+          "baseline": 0.2222222222222222,
+          "candidate": 0.3888888888888889,
+          "difference": 0.16666666666666669
+        },
+        "vsr15": {
+          "baseline": 0.5833333333333334,
+          "candidate": 0.6666666666666666,
+          "difference": 0.08333333333333326
+        },
+        "mq15": {
+          "baseline": 10.083333333333334,
+          "candidate": 9.291666666666666,
+          "difference": -0.7916666666666679
+        },
+        "query_savings": 0.07851239669421495,
+        "conditions": 72
+      }
+    ],
+    "by_density_scenario": [
+      {
+        "density": "d0p5",
+        "scenario": "intact",
+        "vsr6": {
+          "baseline": 1.0,
+          "candidate": 1.0,
+          "difference": 0.0
+        },
+        "vsr15": {
+          "baseline": 1.0,
+          "candidate": 1.0,
+          "difference": 0.0
+        },
+        "mq15": {
+          "baseline": 4.083333333333333,
+          "candidate": 4.083333333333333,
+          "difference": 0.0
+        },
+        "query_savings": 0.0,
+        "conditions": 24
+      },
+      {
+        "density": "d0p5",
+        "scenario": "topic_subset",
+        "vsr6": {
+          "baseline": 0.16666666666666666,
+          "candidate": 0.3333333333333333,
+          "difference": 0.16666666666666666
+        },
+        "vsr15": {
+          "baseline": 0.5,
+          "candidate": 0.6666666666666666,
+          "difference": 0.16666666666666663
+        },
+        "mq15": {
+          "baseline": 10.5,
+          "candidate": 8.666666666666666,
+          "difference": -1.833333333333334
+        },
+        "query_savings": 0.17460317460317465,
+        "conditions": 24
+      },
+      {
+        "density": "d1",
+        "scenario": "intact",
+        "vsr6": {
+          "baseline": 1.0,
+          "candidate": 1.0,
+          "difference": 0.0
+        },
+        "vsr15": {
+          "baseline": 1.0,
+          "candidate": 1.0,
+          "difference": 0.0
+        },
+        "mq15": {
+          "baseline": 4.0,
+          "candidate": 4.0,
+          "difference": 0.0
+        },
+        "query_savings": 0.0,
+        "conditions": 24
+      },
+      {
+        "density": "d1",
+        "scenario": "topic_subset",
+        "vsr6": {
+          "baseline": 0.16666666666666666,
+          "candidate": 0.5,
+          "difference": 0.33333333333333337
+        },
+        "vsr15": {
+          "baseline": 0.5,
+          "candidate": 0.5,
+          "difference": 0.0
+        },
+        "mq15": {
+          "baseline": 10.666666666666666,
+          "candidate": 9.833333333333334,
+          "difference": -0.8333333333333321
+        },
+        "query_savings": 0.07812499999999989,
+        "conditions": 24
+      },
+      {
+        "density": "d2",
+        "scenario": "intact",
+        "vsr6": {
+          "baseline": 1.0,
+          "candidate": 1.0,
+          "difference": 0.0
+        },
+        "vsr15": {
+          "baseline": 1.0,
+          "candidate": 1.0,
+          "difference": 0.0
+        },
+        "mq15": {
+          "baseline": 4.0,
+          "candidate": 4.0,
+          "difference": 0.0
+        },
+        "query_savings": 0.0,
+        "conditions": 24
+      },
+      {
+        "density": "d2",
+        "scenario": "topic_subset",
+        "vsr6": {
+          "baseline": 0.3333333333333333,
+          "candidate": 0.3333333333333333,
+          "difference": 0.0
+        },
+        "vsr15": {
+          "baseline": 0.75,
+          "candidate": 0.8333333333333334,
+          "difference": 0.08333333333333337
+        },
+        "mq15": {
+          "baseline": 9.083333333333334,
+          "candidate": 9.375,
+          "difference": 0.2916666666666661
+        },
+        "query_savings": -0.032110091743119185,
+        "conditions": 24
+      }
+    ],
+    "mq_wins_ties_losses": {
+      "adaptive_lower": 26,
+      "tied": 112,
+      "adaptive_higher": 6
+    },
+    "clean_fpr15": {
+      "static": 0.0,
+      "adaptive": 0.0
+    }
+  }
+}

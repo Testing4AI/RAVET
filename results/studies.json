@@ -1,0 +1,32 @@
+{
+  "primary": {
+    "label": "Primary comparison",
+    "p0": 0.15,
+    "description": "144 paired protected configurations; 48 paired clean controls. Three baseline orders per configuration, one deterministic RAVET order.",
+    "horizon": 15
+  },
+  "compression": {
+    "label": "Compression",
+    "p0": 0.3004170799667139,
+    "description": "All documents summarized; with or without topic transfer. Two corpus/transfer draws, each with eight paired configurations per state.",
+    "horizon": 30
+  },
+  "paraphrase": {
+    "label": "Paraphrase",
+    "p0": 0.2883755391484502,
+    "description": "Sentinel-only paraphrase; ordinary documents unchanged. Eight paired protected configurations.",
+    "horizon": 30
+  },
+  "expansion": {
+    "label": "Knowledge expansion",
+    "p0": 0.3906278341482568,
+    "description": "48 expanded configurations and eight unexpanded references. All original carriers retained.",
+    "horizon": 30
+  },
+  "retrieval": {
+    "label": "Retrieval and indexing",
+    "p0": 0.15,
+    "description": "Eight paired configurations per reconfiguration; Top-5 reference, Top-3, Top-1, and re-chunking.",
+    "horizon": 30
+  }
+}

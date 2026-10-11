@@ -1,0 +1,56 @@
+{
+  "protocol_version": "corpus-expansion-20261002-v2",
+  "study_role": "Outcome-blind corpus expansion with fixed ownership evidence and private tests",
+  "operational_amendment": "Skip donor records with neither text nor title before sampling; no target outcomes exist in v1",
+  "blocks": ["scidocs-block-2", "arguana-block-2"],
+  "replicate_seed": 202609251,
+  "expansion_seed": 202610021,
+  "methods": ["SentinelRAG", "RAVET"],
+  "expansion_factors": [1, 2, 5, 10],
+  "donor_mapping": {
+    "scidocs-block-2": {"related": "trec-covid", "cross": "webis-touche2020"},
+    "arguana-block-2": {"related": "webis-touche2020", "cross": "trec-covid"}
+  },
+  "donor_sources": {
+    "trec-covid": {
+      "url": "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/trec-covid.zip",
+      "md5": "ce62140cb23feb9becf6270d0d1fe6d1"
+    },
+    "webis-touche2020": {
+      "url": "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/webis-touche2020.zip",
+      "md5": "46f650ba5a527fc69e0a6521c5a23563"
+    }
+  },
+  "target_retrievers": ["bm25", "bge-m3"],
+  "target_models": ["api-deepseek-v4-flash-0731", "api-kimi-k3"],
+  "verifier_model": "api-glm-5.1",
+  "clean_count": 3000,
+  "calibration_count": 1000,
+  "unit_count": 30,
+  "top_k": 5,
+  "comparison_horizon": 15,
+  "collection_horizon": 30,
+  "alpha": 0.01,
+  "minimum_common_p0": 0.15,
+  "calibration_confidence": 0.95,
+  "policy_seeds": [11, 29, 47],
+  "scheduler_p0": 0.15,
+  "source_density": "output/density-curve-20260922-v3",
+  "source_ragwm": "output/ragwm-pilot-20261001-v3",
+  "source_corpora": "output/summary-density-20261001-v6/source_corpora.json",
+  "constraints": [
+    "Retain all original ordinary documents and all 30 fixed sentinel identities; do not regenerate or paraphrase them",
+    "Freeze questions, expected answers, shadow profiles and owner groups before any expanded target outcome",
+    "Scale ordinary-document counts from 3000 to 6000, 15000 and 30000; the 30 evidence units remain fixed",
+    "Randomly sample nested donor subsets without queries, answer labels, or retrieval scores",
+    "Use exactly the same donor documents for both methods and their paired clean service",
+    "Namespace external document identities and remove empty records and exact text duplicates before outcome-blind sampling",
+    "Keep calibration donor samples text-disjoint from evaluation donors and original knowledge bases",
+    "Apply one common upper background bound from all method-matched calibration groups, frozen before positive aggregation",
+    "Include the unexpanded reference under the same calibration and scheduler seeds; do not pool with the 144-condition study",
+    "Use fixed BM25 and pinned BGE-M3 with top-k=5, two fixed targets, and the existing answer oracle",
+    "Report VSR and mean capped queries from the same cumulative first-crossing event, with clean service FPR",
+    "Retain all outcomes, including losses; average random-order seeds within each deployment",
+    "One source-corpus replicate and one donor draw are not independent sampling replications"
+  ]
+}

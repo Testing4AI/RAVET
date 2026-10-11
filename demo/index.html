@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RAVET: archived paired evidence for query-efficient RAG ownership testing.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' file:; style-src 'self' file:; img-src 'self' file: data:; connect-src 'none'; object-src 'none'; base-uri 'none'">
+  <title>RAVET | Evidence Explorer</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><a class="brand" href="#">RAVET<span>Ownership Testing</span></a><nav aria-label="Views"><button id="results-tab" class="active" aria-selected="true">Evidence</button><button id="method-tab" aria-selected="false">Framework</button></nav><span class="archive-label">ARCHIVED EXPERIMENTS</span></header>
+<main>
+<section id="evidence-view">
+  <div class="heading"><div><p class="eyebrow">SENTINELRAG / RAVET</p><h1>Better evidence. Fewer queries.</h1></div><a class="text-link" href="../README.md">Artifact guide &#8599;</a></div>
+  <div class="workspace">
+    <aside aria-label="Experiment filters">
+      <h2>Experiment</h2>
+      <label>Study<select id="study"></select></label>
+      <label>Deployment<select id="scenario"></select></label>
+      <label>Evidence condition<select id="state"><option value="watermarked">Protected knowledge base</option><option value="clean">Clean control</option></select></label>
+      <hr>
+      <label>Corpus<select id="dataset"></select></label>
+      <label>Injection density<select id="density"></select></label>
+      <label>Retriever<select id="retriever"></select></label>
+      <label>Target LLM<select id="target"></select></label>
+      <label id="expansion-kind-label" hidden>Added documents<select id="expansion_kind"></select></label>
+      <label id="expansion-factor-label" hidden>Corpus size multiplier<select id="expansion_factor"></select></label>
+      <button class="reset" id="reset">Reset filters</button>
+      <p class="sample-count" id="sample-count"></p>
+    </aside>
+    <div class="analysis">
+      <div class="stat-strip" aria-live="polite">
+        <div><span id="success-title">Verification success</span><strong id="success-value"></strong><small id="success-delta"></small></div>
+        <div><span>Mean capped queries</span><strong id="cost-value"></strong><small id="cost-delta"></small></div>
+        <div><span>Query window</span><strong id="budget-value"></strong><small id="bound"></small></div>
+      </div>
+      <div class="plot-heading"><h2 id="chart-title">Cumulative verification success</h2><div class="legend"><span class="baseline">SentinelRAG</span><span class="ours">RAVET</span></div></div>
+      <div class="chart-wrap"><canvas id="chart" role="img" aria-label="Paired cumulative verification success curves"></canvas></div>
+      <div class="budget-control"><label for="budget">Query budget <output id="budget-output">15</output></label><input type="range" id="budget" min="1" max="15" value="15" step="1"><span id="budget-max">15 calls</span></div>
+      <table class="comparison"><caption class="sr-only">Metrics at the selected query budget; pairs counts paired configurations</caption><thead><tr><th>Method</th><th id="vsr-heading">VSR(15) &#8593;</th><th id="mq-heading">MQ(15) &#8595;</th><th>Pairs</th></tr></thead><tbody id="comparison"></tbody></table>
+      <div class="scope"><span class="status-dot"></span><p id="scope-text"></p></div>
+      <div class="detail-bar"><details><summary>Configuration-level results</summary><div class="detail-scroll"><table><thead><tr><th>Corpus / deployment / density</th><th>Retriever / target / replicate</th><th>SentinelRAG<br>Success / queries</th><th>RAVET<br>Success / queries</th></tr></thead><tbody id="details"></tbody></table></div></details><button id="download">Download selection CSV</button></div>
+    </div>
+  </div>
+</section>
+<section id="method-view" hidden>
+  <div class="heading"><div><p class="eyebrow">THREE COMPONENTS / TWO PHASES</p><h1>Engineer the evidence, then prioritize the tests.</h1></div></div>
+  <img class="overview" src="../assets/overview.png" alt="RAVET framework: relation-explicit construction, shadow-based probe selection, and feedback-guided verification">
+  <div class="method-grid"><article><span>01 / BEFORE RELEASE</span><h2>Relation-explicit construction</h2><p>Keep the subject, relation, and expected answer locally complete so that the intended fact remains observable after document processing.</p></article><article><span>02 / BEFORE RELEASE</span><h2>Shadow-based selection</h2><p>Compare candidate questions across owner-side representations. Freeze one question and its exposure profile for each sentinel.</p></article><article><span>03 / BLACK-BOX VERIFICATION</span><h2>Feedback-guided execution</h2><p>Use returned answers and shadow exposure to update group priorities, directing the next query toward promising untested evidence.</p></article></div>
+  <div class="method-end"><h2>A matched comparison</h2><p>Both methods use the same fact identities, target conditions, semantic oracle, and evidence rule. SentinelRAG uses original carriers, default questions, and random ordering; RAVET changes carrier expression, probe selection, and execution priorities.</p><a href="../docs/EVIDENCE.md">Evidence and reproduction scope &#8599;</a></div>
+</section>
+</main>
+<footer><strong>RAVET</strong><span>Offline evidence explorer. No model calls. No telemetry.</span><a href="../results/studies.json">Study metadata</a></footer>
+<script src="data.js"></script><script src="app.js"></script>
+</body></html>

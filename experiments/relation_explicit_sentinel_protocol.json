@@ -1,0 +1,77 @@
+{
+  "protocol_version": "2026-08-21-relation-explicit-sentinel-v2",
+  "status": "post-pilot primary-method freeze",
+  "method_change_reason": "The necessary fixed-strategy ablation showed that relation_explicit was best or tied across all six dataset-retriever held-out conditions and usually outperformed the more complex shadow-selected mixture.",
+  "research_question": "Can relation-explicit sentinel synthesis improve black-box RAG knowledge-base verification robustness while preserving sentinel count, probe groups, required answers, and approximate document length?",
+  "baseline": "Original SentinelRAG factual k60 fixtures and q0 probing policy",
+  "datasets": [
+    "nfcorpus",
+    "scifact",
+    "fiqa"
+  ],
+  "sentinel_slots_per_dataset": 60,
+  "probes_per_slot": 5,
+  "generation_model": "DeepSeek-V4-Flash-0731",
+  "generation_constraints": {
+    "preserve_normalized_expected_answer_phrases": true,
+    "minimum_source_word_ratio": 0.75,
+    "maximum_source_word_ratio": 1.25,
+    "preserve_probe_groups": true,
+    "preserve_sentinel_count": true
+  },
+  "primary_method": "relation_explicit",
+  "primary_method_definition": "Rewrite every required question-answer relation as a direct declarative relation inside a coherent standalone document, without exposing testing or ownership language.",
+  "necessary_baselines": [
+    "original_sentinelrag_fixture",
+    "fact_first_fixed_rewrite",
+    "summary_resilient_fixed_rewrite",
+    "shadow_selected_mixture"
+  ],
+  "exploratory_negative_ablation": "joint_sentinel_probe_selection",
+  "retrievers": [
+    "contriever",
+    "bm25"
+  ],
+  "calibration_variants": [
+    "original",
+    "reverse_sentences",
+    "boilerplate",
+    "paired_chunks"
+  ],
+  "heldout_retrieval_variant": "single_sentence_chunks",
+  "additional_nfcorpus_migrations": [
+    "word_rechunk_120_30",
+    "paraphrase",
+    "compressed_summary"
+  ],
+  "target_blackbox_condition": {
+    "dataset": "nfcorpus",
+    "migration": "paraphrase",
+    "retriever": "contriever",
+    "top_k": 5,
+    "rag_models": [
+      "DeepSeek-V4-Flash-0731",
+      "Kimi-K3"
+    ],
+    "verifier": "GLM-5.1"
+  },
+  "statistical_unit": "sentinel slot",
+  "primary_metrics": [
+    "strict_retrieval_and_support_hit_at_5",
+    "mean_reciprocal_rank",
+    "semantic_target_answer_success",
+    "exact_target_answer_success",
+    "queries_to_anytime_significance",
+    "normalized_cumulative_detection"
+  ],
+  "claim_boundary": {
+    "sentinel_synthesis": "improves robustness and answer success",
+    "probe_selection_and_prioritization": "provides query efficiency",
+    "not_yet_claimed": [
+      "stealth",
+      "naturalness",
+      "anomaly-detector evasion",
+      "robustness to targeted sentinel removal"
+    ]
+  }
+}
