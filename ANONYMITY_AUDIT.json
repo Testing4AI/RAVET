@@ -1,0 +1,6 @@
+{
+  "status": "passed",
+  "findings": [],
+  "policy": "Allowlisted source, numeric records, no corpus or answer text; no git history, credentials, or private infrastructure.",
+  "limitations": "Pattern checks are not a formal guarantee of anonymity; third-party copyright notices are intentionally retained."
+}

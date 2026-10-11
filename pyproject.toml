@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ravet-artifact"
+version = "1.0.0"
+description = "RAVET: query-efficient ownership testing for RAG knowledge bases"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Anonymous RAVET authors"}]
+dependencies = ["numpy>=1.26", "scipy>=1.11", "scikit-learn>=1.3", "rank-bm25>=0.2.2"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+live = ["beir", "chromadb", "datasets", "openai", "pandas", "pyarrow", "python-dotenv", "sentence-transformers", "socksio", "tokenizers", "torch", "tqdm", "transformers"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["sentinelrag*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.package-data]
+"sentinelrag.vendor.contriever_src" = ["LICENSE"]
