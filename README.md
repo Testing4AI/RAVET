@@ -20,13 +20,6 @@ A RAG knowledge base is a maintained asset. Its documents can be reused behind a
 
 ## At a Glance
 
-| Primary study | SentinelRAG | RAVET | Change |
-| :--- | ---: | ---: | ---: |
-| Verification success within 6 queries | 47.2% | **69.4%** | **+22.2 percentage points** |
-| Verification success within 15 queries | 74.8% | **83.3%** | **+8.6 percentage points** |
-| Mean capped queries, 15-query window | 8.31 | **6.66** | **19.8% fewer** |
-| Mean queries on intact knowledge bases | 5.41 | **4.03** | **25.6% fewer** |
-
 These are equal-weight results over **144 paired configurations**: two corpora, two deployment states, three injection densities, two retrievers, two targets, and three sampling replicates. Baseline orderings are averaged *within* configurations. Percentage-point differences use unrounded values. Both methods verify every intact configuration within 15 queries; earlier verification still distinguishes them.
 
 <p align="center"><img src="assets/primary.png" alt="Cumulative verification success: SentinelRAG compared with RAVET, overall, intact, and partial-transfer settings" width="960"></p>
